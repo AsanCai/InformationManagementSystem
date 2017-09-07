@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>教育研究院专家征集系统</title>
+    <meta name="author" content="DeathGhost">
+
+    <link rel="stylesheet" href="stylesheets/bootstrap.css"/>
+    <link rel="stylesheet" href="stylesheets/bootstrapValidator.css"/>
+    <link rel="stylesheet" type="text/css" href="stylesheets/home.css">
+    
+
+    <script type="text/javascript" src="javascripts/jquery.js"></script>
+    <!-- <script src="js/verificationNumbers.js" tppabs="js/verificationNumbers.js"></script> -->
+    <script type="text/javascript" src="javascripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="javascripts/bootstrapValidator.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="stylesheets/drag.css">
+    <script type="text/javascript" src="javascripts/drag.js"></script>
+</head>
+
+<body style="overflow:hidden;" class="jumbotron">
+    <!-- 模态框一 -->
+    <div class="modal fade" id="tipModal" tabindex="-1" role="dialog" aria-labelledby="tipModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="tipModalLabel" style="text-align: center;"></h4>
+                </div>
+                <div class="modal-body" id="reason"></div>
+                <div class="modal-footer" id="tipFooter">
+                    <button type="button" id="closeBtn" name="closeBtn" class="btn btn-primary">我知道了</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="wrap">
+        <div class="banner-show">
+            <blockquote>
+                <h2 class="text-primary">教育研究院专家征集系统</h1>
+                <small>数据库大作业</small>
+            </blockquote>
+        </div>
+
+        <div class="container">
+            <div class="register-box">
+                <form id="form" class="col-sm-offset-4 col-sm-4 form-horizontal" onsubmit="return false">
+                    <fieldset>
+                        <div class="panel panel-default">
+
+                            <div class="panel-heading">
+                                <div style="font-size:20px;font-weight:bold;text-align:center;color:#45bda6;text-shadow:0 0 1px #0e947a;margin-bottom:15px;">
+                                    <strong style="display:block;">教育研究院专家征集系统</strong>
+                                    <em style="display:block;font-size:12px;margin-top:8px;">注册界面</em>
+                                </div>
+                                
+                            </div>
+
+
+                            <div class="panel-body m15">
+
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-user"></span>
+                                        </span>
+                                        <input type="text" class="form-control" id="username" name="uname" placeholder="请输入用户名" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-lock"></span>
+                                        </span>
+                                        <input type="password" class="form-control" id="password" name="upass" placeholder="请输入密码" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-lock"></span>
+                                        </span>
+                                        <input type="password" class="form-control" id="re_password" name="re_upass" placeholder="请重复密码" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-inline" >
+                                        <div class="form-inline-input">
+                                            <div class="code-box" id="code-box">
+                                                <input type="text" name="code" class="code-input" />
+                                                <p></p>
+                                                <span>>>></span>
+                                            </div>
+                                        </div>
+                                    </label>
+                                </div>
+                                <div class="form-group hide" id="btnDiv">
+                                    <button type="submit" class="btn btn-primary btn-block" id="register">注册</button>
+                                </div>
+                                <div class="form-group">
+                                    <button type="button" class="btn btn-info col-sm-2 col-sm-offset-10" id="login">登录</button>
+                                </div>
+                            </div>
+                            </form>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="js/register.js"></script>
+</body>
+</html>

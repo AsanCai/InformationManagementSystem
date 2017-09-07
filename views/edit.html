@@ -1,0 +1,763 @@
+<% layout('layout.html') -%>
+
+<!-- 用于上传个人照片 -->
+<link rel="stylesheet" type="text/css" href="stylesheets/uploadImg.css">
+
+<!-- 多选框 -->
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.2/css/bootstrap-select.min.css" />
+<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.2/js/bootstrap-select.min.js"></script>
+
+<!-- 日期选择器 -->
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.min.css" />
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker3.min.css" />
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.min.js"></script>
+
+<!-- 单选框 -->
+<!-- 单选框没用到，这里注释掉 -->
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/awesome-bootstrap-checkbox/0.3.5/awesome-bootstrap-checkbox.min.css" /> -->
+
+<!-- 表单验证、设置默认数据 -->
+<script type="text/javascript" src="js/edit.js"></script>
+
+
+<style type="text/css">
+    .Necessary{
+        color: red;
+    }
+
+    /* 让检测图标的位置适应多选框 */
+    #form .selectContainer .form-control-feedback {
+        right: -30px;
+    }
+
+    /* 让检测图标的位置适应日期选择器 */
+    #form .date .form-control-feedback {
+        right: -30px;
+    }
+
+    /* 让检测图标的位置适应单选按钮 */
+    #form #radio .form-control-feedback {
+        right: -30px;
+    }
+
+    /* 取消单选框选中时出现的提示图标 */
+    /*单选框没用到，这里注释掉*/
+    /*input[type="radio"].styled:checked+label:after {
+        font-family: 'FontAwesome';
+        content: '';
+    }*/
+</style>
+
+
+<% if(data) { %>
+    <script>
+        getDefaultData();
+    </script>
+<% } %>
+
+
+
+<!-- 模态框一 -->
+<div class="modal fade" id="shubmitModal" tabindex="-1" role="dialog" aria-labelledby="shubmitModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="shubmitModalLabel" style="text-align: center;">温馨提示</h4>
+            </div>
+            <div class="modal-body">提交审核之后将无法对信息进行修改，是否确认提交？</div>
+            <div class="modal-footer">
+                <button type="button" id="shubmitConfirmBtn" name="shubmitConfirmBtn" class="btn btn-primary">确认提交</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="resetModal" tabindex="-1" role="dialog" aria-labelledby="resetModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="resetModalLabel" style="text-align: center;">温馨提示</h4>
+            </div>
+            <div class="modal-body">重置表单之后所有填入的个人信息都将被清空，但不影响已经保存的信息，是否确认重置？</div>
+            <div class="modal-footer">
+                <button type="button" id="resetConfirmBtn" name="resetConfirmBtn" class="btn btn-primary">确认重置</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- colspan 属性规定单元格可横跨的列数 -->
+<!-- rowspan 属性规定单元格可横跨的行数 -->
+<!-- 设置居中margin:0px auto; -->
+<div style="width: 90%;margin:0px auto;">
+    <table class="table table-bordered table-condensed">
+        <tr>
+            <td>
+                <form class="form-inline" id="form" name="form" enctype="multipart/form-data" role="form" onsubmit="return false">
+                    <table class="table table-bordered">
+                        <tr>
+                            <td colspan="2" bgcolor="#EFEFEF"><strong>&nbsp;&nbsp;基本信息</strong></td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    专家证书编号：
+                                    <input type="text" name="qual_id" id="qual_id" class="form-control" disabled/>
+                                </div>
+                            </td>
+
+                            <td>
+                                <div class="form-group">
+                                    状 态：
+                                    <input type="text" id="status" name="status" class="form-control" disabled />
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    证书有效时间：
+                                    <input type="text" name="validTime" id="validTime" class="form-control" disabled/>
+                                </div>
+                            </td>
+
+                            <td rowspan="6">
+                                <!-- 上传个人照片 -->
+                                    <div class="img-box full">
+                                    <div class=" form-group">
+                                        <section class=" img-section">
+                                            <p class="up-p" style="text-align: center;">
+                                                <span class="Necessary">*</span> 上传个人照片
+                                            </p>
+                                            <div class="z_photo upimg-div clear" >
+                                                 <section class="z_file fl">
+                                                    <img src="/images/used/background.png" class="add-img" name="add-img" id="add-img">
+                                                    <input type="file" id="pictureInput" name="pictureInput" class="file" accept="image/jpg,image/jpeg,image/png,image/bmp" required>
+                                                 </section>
+                                             </div>
+                                         </section>
+                                         </div>
+                                    </div>
+                                    <aside class="mask works-mask">
+                                        <div class="mask-content">
+                                            <p class="del-p ">确定删除图片？</p>
+                                            <p class="check-p">
+                                                <span class="del-com wsdel-ok">确定</span>
+                                                <span class="wsdel-no">取消</span>
+                                            </p>
+                                        </div>
+                                    </aside>
+                                
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <span class="Necessary">* </span>
+                                <div class="form-group">
+                                    姓 名：
+                                    <input type="text" name="uname" id="uname" class="form-control"/>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <span class="Necessary">* </span>
+                                <div class="form-group">
+                                    性 别：
+                                    <div class="selectContainer" style="float: right;">
+                                        <select class="form-control" name="sexuality" id="sexuality">
+                                            <option value="">请选择</option>
+                                            <option value="男">男</option>
+                                            <option value="女">女</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <span class="Necessary">* </span>
+                                <div class="form-group">
+                                    出生日期：
+                                    <div class="date"  style="float: right;">
+                                        <div class="input-group input-append date" id="datePicker">
+                                            <input type="text" class="form-control" name="birthDay" id="birthDay" />
+                                            <span class="input-group-addon add-on">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                      
+
+                        <tr>
+                            <td>
+                                <span class="Necessary">* </span>
+                                <div class="form-group">
+                                    手机号码：
+                                    <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" />
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <span class="Necessary">*</span> 
+                                <div class="form-group">
+                                    E-mail：
+                                    <!-- type为email，不需要自己输入正则表达式进行验证 -->
+                                    <input type="email" class="form-control" id="email" name="email" />
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <span class="Necessary">*</span> 
+                                <div class="form-group">
+                                    证件类型：
+                                    <div class="selectContainer" style="float: right;">
+                                        <select class="form-control" name="cardType" id="cardType">
+                                            <option value="">请选择</option>
+                                            <option value="身份证">身份证</option>
+                                            <option value="护照">护照</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </td>
+
+                            <td>
+                                <span class="Necessary">*</span>
+                                <div class="form-group">
+                                    证件号码：
+                                    <input type="text" class="form-control" id="cardNumber" name="cardNumber" />
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <span class="Necessary">*</span> 
+                                <div class="form-group">
+                                    颁发机构：
+                                    <input type="text" class="form-control" size="30" id="authority" name="authority">
+                                </div>
+                            </td>
+
+                            <td>
+                                <span class="Necessary">*</span> 
+                                <div class="form-group">
+                                    政治面貌：
+                                    <div class="selectContainer" style="float: right;">
+                                        <select class="form-control" name="politicalStatus" id="politicalStatus">
+                                            <option value="">请选择</option>
+                                            <option value="党员">党员</option>
+                                            <option value="共青团员">共青团员</option>
+                                            <option value="普通公民">普通公民</option>
+                                            <option value="民主党派人士">民主党派人士</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <span class="Necessary">*</span> 
+                                <div class="form-group">
+                                    最高学历：
+                                    <div class="selectContainer" style="float: right;">
+                                        <select class="form-control" name="academicQual" id="academicQual">
+                                            <option value="">请选择</option>
+                                            <option value="专科">专科</option>
+                                            <option value="本科">本科</option>
+                                            <option value="硕士研究生">硕士研究生</option>
+                                            <option value="博士研究生">博士研究生</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </td>
+
+                            <td>
+                                <span class="Necessary">*</span> 
+                                <div class="form-group">
+                                    最高学位：
+                                    <div class="selectContainer" style="float: right;">
+                                        <select class="form-control" name="academicDegree" id="academicDegree">
+                                            <option value="">请选择</option>
+                                            <option value="学士">学士</option>
+                                            <option value="硕士">硕士</option>
+                                            <option value="博士">博士</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr> 
+
+                        <tr>
+                            <td>
+                                <span class="Necessary">*</span> 
+                                <div class="form-group">
+                                    职 称：
+                                    <input type="text" class="form-control" id="title" name="title" />
+                                </div>
+                            </td>
+                            
+
+                            <td>
+                                <span class="Necessary">*</span> 
+                                <div class="form-group">
+                                    证书编号：
+                                    <input type="text" class="form-control" id="titleID" name="titleID" />
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <span class="Necessary">*</span> 
+                                <div class="form-group">
+                                    职 务：
+                                    <input type="text" class="form-control" id="post" name="post" />
+                                </div>
+                            </td>
+
+                            <td>
+                                <span class="Necessary">*</span> 
+                                <div class="form-group">
+                                    从业时长：
+                                    <div class="selectContainer" style="float: right;">
+                                        <select class="form-control" name="workTime" id="workTime">
+                                            <option value="">请选择</option>
+                                            <option value="1年">1年</option>
+                                            <option value="2年">2年</option>
+                                            <option value="3年">3年</option>
+                                            <option value="4年">4年</option>
+                                            <option value="5年">5年</option>
+                                            <option value="5年以上">5年以上</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <span class="Necessary">*</span> 
+                                <div class="form-group">
+                                    是否退休：
+                                    <div class="selectContainer" style="float: right;">
+                                        <select class="form-control" name="retire" id="retire">
+                                            <option value="">请选择</option>
+                                            <option value="是">是</option>
+                                            <option value="否">否</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </td>
+
+                            <td>
+                                <span class="Necessary">*</span> 
+                                <div class="form-group">
+                                    是否兼职：
+                                    <div class="selectContainer" style="float: right;">
+                                        <select class="form-control" name="partTime" id="partTime">
+                                            <option value="">请选择</option>
+                                            <option value="是">是</option>
+                                            <option value="否">否</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="2">
+                                <span class="Necessary">*</span>
+                                <div class="form-group">
+                                    工作单位：
+                                    <!-- size规定可见字符数 -->
+                                    <input type="text" class="form-control" size="90" id="company"  name="company" />
+                                </div>
+                            </td>
+                        </tr>
+                      
+                        <tr>
+                            <td colspan="2">
+                                <span class="Necessary">*</span>
+                                <div class="form-group">
+                                    通讯地址：
+                                    <input type="text" class="form-control" size="90" id="address" name="address" />
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <span class="Necessary">*</span>
+                                <div class="form-group">
+                                    邮政编码：
+                                    <input type="text" class="form-control" id="postCode" name="postCode" />
+                                </div>
+                            </td>
+
+                            <td>
+                                <span class="Necessary">*</span>
+                                <div class="form-group">
+                                    家庭电话：
+                                    <input type="text" class="form-control" id="telPhoneNum" name="telPhoneNum" />
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <span class="Necessary">*</span>
+                                <div class="form-group">
+                                    毕业院校：
+                                    <input type="text" class="form-control" id="university" name="university" />
+                                </div>
+                            </td>
+                            <td>
+                                <span class="Necessary">*</span>
+                                <div class="form-group">
+                                    专业：
+                                    <input type="text" class="form-control" id="major" name="major" />
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="2">
+                                <span class="Necessary">*</span>
+                                <div class="form-group">
+                                    评审领域：
+                                    <div class="selectContainer" style="float: right;">
+                                        <select name="reviewArea" id="reviewArea" class="form-control" multiple title="请选择一到两个评审领域">
+                                            <option value="幼儿园教育评估">幼儿园教育评估</option>
+                                            <option value="小学教育评估">小学教育评估</option>
+                                            <option value="中学教育评估">中学教育评估</option>
+                                            <option value="中职教育评估">中职教育评估</option>
+                                            <option value="高职教育评估">高职教育评估</option>
+                                            <option value="高校教育评估">高校教育评估</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <table class="table table-bordered">
+                        <tr>
+                            <!-- 需要加上clospan属性才能生效 -->
+                            <td bgcolor="#EFEFEF" colspan="3">
+                                <strong>&nbsp;&nbsp;资格证书</strong>
+                                <button type="button" style="float: center" class="btn btn-primary addQualification">增加资格证书</button>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><div style="text-align: center">资格证书名</div></td>
+                            <td><div style="text-align: center">资格证书编号</div></td>
+                            <td><div style="text-align: center">操作</div></td>
+                        </tr>
+
+
+                        <tr class="hide" id="qualTemplate">
+                            <td>
+                                <div style="text-align: center;">
+                                    <div class="form-group" style="width: 100%">
+                                        <input type="text" class="form-control" style="width: 80%" name="qualName" disabled="disabled">
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div style="text-align: center;">
+                                    <div class="form-group" style="width: 100%">
+                                        <input type="text" class="form-control" style="width: 80%" name="qualID" disabled="disabled">
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div style="text-align: center;">
+                                    <div class="form-group">
+                                        <button type="button" class="btn btn-primary removeQualification">删除</button>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <table class="table table-bordered">
+                        <tr>
+                            <!-- 需要加上clospan属性才能生效 -->
+                            <td bgcolor="#EFEFEF" colspan="5">
+                                <strong>&nbsp;&nbsp;评估/评审经历</strong>
+                                <button type="button" style="float: center" class="btn btn-primary addReviewExprience">增加评估/评审经历</button>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><div style="text-align: center">时间</div></td>
+                            <td><div style="text-align: center">任务名称</div></td>
+                            <td><div style="text-align: center">任务描述</div></td>
+                            <td><div style="text-align: center">任务类型</div></td>
+                            <td><div style="text-align: center">操作</div></td>
+                        </tr>
+
+
+
+                        <tr class="hide" id="reviewTemplate">
+                            <td >
+                                <div class="form-group" style="margin-right: 20px;">
+                                    <div class="date">
+                                        <div class="input-group input-append date" name="templateDiv" >
+                                            <input type="text" class="form-control" name="reviewTime" disabled="disabled">
+                                            <span class="input-group-addon add-on">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+
+                            <td>
+                                <div style="text-align: center;">
+                                    <div class="form-group" style="width: 100%">
+                                        <input type="text" class="form-control" style="width: 100%" name="reviewName" disabled="disabled">
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div style="text-align: center;">
+                                    <div class="form-group" style="width: 100%">
+                                        <input type="text" class="form-control" style="width: 100%" name="reviewDesc" disabled="disabled">
+                                    </div>
+                                </div>
+                            </td>
+                            <td style="width: 30px;">
+                                <div style="text-align: center;">
+                                    <div class="form-group"">
+                                        <div class="selectContainer" style="float: left;">
+                                            <select class="form-control" name="reviewType" disabled="disabled">
+                                                <option value="">请选择</option>
+                                                <option value="评审">评审</option>
+                                                <option value="评估">评估</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div style="text-align: center;">
+                                    <div class="form-group">
+                                        <button type="button" class="btn btn-primary removeReviewExprience">删除</button>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <table class="table table-bordered">
+                        <tr>
+                            <!-- 需要加上clospan属性才能生效 -->
+                            <td bgcolor="#EFEFEF" colspan="6">
+                                <strong>&nbsp;&nbsp;工作经历</strong>
+                                <button type="button" style="float: center" class="btn btn-primary addWorkExprience">增加工作经历</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div style="text-align: center">起始时间</div>
+                            </td>
+                            <td>
+                                <div style="text-align: center">终止时间</div>
+                            </td>
+                            <td>
+                                <div style="text-align: center">工作单位</div>
+                            </td>
+                            <td>
+                                <div style="text-align: center">职务</div>
+                            </td>
+                            <td>
+                                <div style="text-align: center">证明人</div>
+                            </td>
+                            <td>
+                                <div style="text-align: center">操作</div>
+                            </td>
+                        </tr>
+
+
+
+                        <tr class="hide" id="workTemplate">
+                            <td>
+                                <div class="form-group" style="margin-right: 20px;">
+                                    <div class="date">
+                                        <div class="input-group input-append date" name="workStartDiv">
+                                            <input type="text" class="form-control" name="startTime" id="startTime" disabled="disabled"/>
+                                            <span class="input-group-addon add-on">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+
+                            <td>
+                                <div class="form-group" style="margin-right: 20px;">
+                                    <div class="date">
+                                        <div class="input-group input-append date" name="workEndDiv">
+                                            <input type="text" class="form-control" name="endTime" id="endTime" disabled="disabled"/>
+                                            <span class="input-group-addon add-on">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div style="text-align: center;">
+                                    <div class="form-group" style="width: 100%">
+                                        <input type="text" class="form-control" style="width: 100%" name="usedCompany" id="usedCompany" disabled="disabled">
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div style="text-align: center;">
+                                    <div class="form-group" style="width: 100%">
+                                        <input type="text" class="form-control" style="width: 100%" name="post" id="post" disabled="disabled">
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div style="text-align: center;">
+                                    <div class="form-group" style="width: 100%">
+                                        <input type="text" class="form-control" style="width: 100%" name="person" id="person" disabled="disabled">
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div style="text-align: center;">
+                                    <div class="form-group">
+                                        <button type="button" class="btn btn-primary removeWorkExprience">删除</button>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <table class="table table-bordered">
+                        <tr>
+                            <td bgcolor="#EFEFEF" colspan="3">
+                                <strong>&nbsp;&nbsp;回避单位</strong>
+                                <button type="button" style="float: center" class="btn btn-primary addAvoidCompany">增加回避单位</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><div style="text-align: center">单位名称</div></td>
+                            <td><div style="text-align: center">是否工作单位</div></td>
+                            <td><div style="text-align: center">操作</div></td>
+                        </tr>
+
+
+
+
+                        <tr class="hide" id="avoidTemplate">
+                            <td>
+                                <div style="text-align: center;">
+                                    <div class="form-group" style="width: 100%">
+                                        <input type="text" class="form-control" style="width: 80%" name="avoidName" disabled="disabled">
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div style="text-align: center;">
+                                    <div class="form-group">
+                                        <div class="selectContainer" style="float: right;">
+                                            <select class="form-control" name="avoidIs" id="avoidIs" disabled="disabled">
+                                                <option value="">请选择</option>
+                                                <option value="是">是</option>
+                                                <option value="否">否</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div style="text-align: center;">
+                                    <div class="form-group">
+                                        <button type="button" class="btn btn-primary removeAvoidCompany">删除</button>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <table class="table table-bordered">
+                        <tr>
+                            <td bgcolor="#EFEFEF">
+                                <strong>&nbsp;&nbsp;业务专长（不超过300字）</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="form-group" style="width: 100%;">
+                                    <textarea class="form-control" rows="5" style="width: 100%;" maxlength="300" id="speciality" name="speciality"></textarea>
+                                </div>
+                            </td>
+                        </tr> 
+
+
+                        <tr>
+                            <td bgcolor="#EFEFEF">
+                                <strong>&nbsp;&nbsp;工作业绩（不超过300字）</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td >
+                                <div class="form-group" style="width: 100%;">
+                                    <textarea class="form-control" rows="5" style="width: 100%;" maxlength="300" id="performance" name="performance"></textarea>
+                                </div>
+                            </td>
+                        </tr> 
+
+                        <tr>
+                            <td bgcolor="#EFEFEF">
+                                <strong>&nbsp;&nbsp;其他说明（不超过300字）</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td bgcolor="#FFFFFF">
+                                <div class="form-group" style="width: 100%;">
+                                    <textarea class="form-control" rows="5" style="width: 100%;" maxlength="300" id="others" name="others"></textarea>
+                                </div>
+                            </td>
+                        </tr> 
+
+                        <tr>
+                            <td height="50" colspan="4" align="center" bgcolor="#FFFFEC">
+                                <button type="button" data-toggle="modal" id="submitBtn" name="submitBtn" class="btn btn-primary">提 交</button>
+                                &nbsp;&nbsp;&nbsp;
+                                <button type="button" id="saveBtn" class="btn btn-primary">保 存</button>
+                                &nbsp;&nbsp;&nbsp;
+                                <button type="button" id="resetBtn" class="btn btn-primary">重 置</button>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </td>
+        </tr>
+    </table>
+</div>

@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>教育研究院专家征集系统</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script type="application/x-javascript"> 
+        addEventListener("load", function() { 
+            setTimeout(hideURLbar, 0); 
+            }, false); function hideURLbar(){ 
+                window.scrollTo(0,1); 
+        } 
+    </script>
+
+    <link href="stylesheets/bootstrap.min.css" rel='stylesheet' type='text/css' />
+    <link rel="stylesheet" href="stylesheets/bootstrapValidator.css"/>
+    <link href="stylesheets/layout.css" rel='stylesheet' type='text/css' />
+    <link href="stylesheets/font-awesome.css" rel="stylesheet"> 
+    <link href="stylesheets/custom.css" rel="stylesheet">
+
+    <script src="javascripts/jquery.js"></script>
+    <script src="javascripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="javascripts/bootstrapValidator.js"></script>
+    
+    <script type="text/javascript" src="js/adminLayout.js"></script>
+</head>
+<body style="padding-top: 50px;">
+    <div id="wrapper">
+        <!-- 顶部导航栏 -->
+        <nav class="top1 navbar navbar-default navbar-fixed-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="index.html">专家征集系统</a>
+            </div>
+            
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="/message" class="dropdown-toggle">
+                        <i class="fa fa-bell-o" id="tipNum"></i>
+                    </a>                
+                </li>
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle avatar" data-toggle="dropdown">
+                        <i class="fa fa-user"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <!-- <li class="dropdown-menu-header text-center">
+                            <strong>欢迎，XXX</strong>
+                        </li> -->
+                        <li class="m_2"><a href="/login"><i class="fa fa-lock"></i> 注销</a></li>  
+                    </ul>
+                </li>
+            </ul>
+            <!-- 左侧菜单 -->
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <div class="list-group">
+                        <a href="/adminIndex" class="list-group-item">
+                            <i class="fa fa-dashboard nav_icon"></i>首页
+                        </a>
+                        <a href="/message" class="list-group-item">
+                            <i class="fa fa-table nav_icon"></i>用户信息列表
+                        </a>
+                        <a href="/changePassword" class="list-group-item">
+                            <i class="fa fa-check-square-o nav_icon"></i>修改密码
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+
+        <!-- 右侧展示页面 -->
+        <div id="page-wrapper">
+            <%- body -%>
+        </div>
+
+
+       <div class="copy navbar-static-bottom" style="text-align: center;">
+            <p>Copyright &copy; 2017 AsanCai</p>
+        </div>
+   </div>
+    
+    
+</body>
+</html>

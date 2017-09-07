@@ -1,0 +1,534 @@
+<% layout('adminLayout.html') -%>
+
+
+
+<div style="width: 90%;margin:0px auto;">
+    <table class="table table-bordered table-condensed">
+        <tr>
+            <td>
+
+                <table class="table table-bordered">
+                        <td>
+                            <div class="form-group">
+                                状态
+                                <%= data.status %>
+                            </div>
+                        </td>
+
+                        <td rowspan="6" style="width: 450px;text-align: center;">
+                            <img src=<%= data.picture %> />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                姓 名：
+                                <%= data.name %>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                性 别：
+                                <%= data.sexuality %>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                出生日期：
+                                <%= data.birthDay %>
+                            </div>
+                        </td>
+                    </tr>
+
+                  
+
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                手机号码：
+                                <%= data.phoneNumber %>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                E-mail：
+                                <%= data.email %>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                证件类型：
+                                <%= data.cardType %>
+                            </div>
+                        </td>
+
+                        <td>
+                            <div class="form-group">
+                                证件号码：
+                                <%= data.cardNumber %>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                颁发机构：
+                                <%= data.authority %>
+                            </div>
+                        </td>
+
+                        <td>
+                            <div class="form-group">
+                                政治面貌：
+                                <%= data.politicalStatus %>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                最高学历：
+                                <%= data.academicQual %>
+                            </div>
+                        </td>
+
+                        <td>
+                            <div class="form-group">
+                                最高学位：
+                                <%= data.academicDegree %>
+                            </div>
+                        </td>
+                    </tr> 
+
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                职 称：
+                                <%= data.title %>
+                            </div>
+                        </td>
+                        
+
+                        <td>
+                            <div class="form-group">
+                                证书编号：
+                                <%= data.titleID %>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                职 务：
+                                <%= data.post %>
+                            </div>
+                        </td>
+
+                        <td>
+                            <div class="form-group">
+                                从业时长：
+                                <%= data.workTime %>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                是否退休：
+                                <%= data.retire %>
+                            </div>
+                        </td>
+
+                        <td>
+                            <div class="form-group">
+                                是否兼职：
+                                <%= data.partTime %>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="2">
+                            <div class="form-group">
+                                工作单位：
+                                <%= data.company %>
+                            </div>
+                        </td>
+                    </tr>
+                  
+                    <tr>
+                        <td colspan="2">
+                            <div class="form-group">
+                                通讯地址：
+                                <%= data.address %>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                邮政编码：
+                                <%= data.postCode %>
+                            </div>
+                        </td>
+
+                        <td>
+                            <div class="form-group">
+                                家庭电话：
+                                <%= data.telPhoneNum %>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                毕业院校：
+                                <%= data.university %>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-group">
+                                专业：
+                                <%= data.major %>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="2">
+                            <div class="form-group">
+                                评审领域：<%= data.reviewArea %>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+
+                <table class="table table-bordered">
+                    <tr>
+                        <td bgcolor="#EFEFEF" colspan="2">
+                            <strong>&nbsp;&nbsp;资格证书</strong>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><div style="text-align: center">资格证书名</div></td>
+                        <td><div style="text-align: center">资格证书编号</div></td>
+                    </tr>
+                    <% if(data.qualification) { %> 
+                        <% data.qualification.forEach(function(element){ %>  
+                            <tr>
+                                <td>
+                                    <div class="form-group" style="text-align: center;">
+                                        <%= element.name %>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group" style="text-align: center;">
+                                        <%= element.id %>
+                                    </div>
+                                </td>
+                            </tr>
+                         <% }) %> 
+                    <% } %>
+                </table>
+
+                <table class="table table-bordered">
+                    <tr>
+                        <td bgcolor="#EFEFEF" colspan="4">
+                            <strong>&nbsp;&nbsp;评估/评审经历</strong>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><div style="text-align: center">时间</div></td>
+                        <td><div style="text-align: center">任务名称</div></td>
+                        <td><div style="text-align: center">任务描述</div></td>
+                        <td><div style="text-align: center">任务类型</div></td>
+                    </tr>
+                    <% if(data.reviewExprience) { %>
+                        <% data.reviewExprience.forEach(function(element){ %>  
+                            <tr>
+                                <td>
+                                    <div class="form-group" style="text-align: center;">
+                                        <%= element.time %>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group" style="text-align: center;">
+                                        <%= element.name %>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group" style="text-align: center;">
+                                        <%= element.desc %>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group" style="text-align: center;">
+                                        <%= element.type %>
+                                    </div>
+                                </td>
+                            </tr>
+                         <% }) %>
+                    <% } %>
+                </table>
+
+                <table class="table table-bordered">
+                    <tr>
+                        <td bgcolor="#EFEFEF" colspan="5">
+                            <strong>&nbsp;&nbsp;工作经历</strong>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div style="text-align: center">起始时间</div>
+                        </td>
+                        <td>
+                            <div style="text-align: center">终止时间</div>
+                        </td>
+                        <td>
+                            <div style="text-align: center">工作单位</div>
+                        </td>
+                        <td>
+                            <div style="text-align: center">职务</div>
+                        </td>
+                        <td>
+                            <div style="text-align: center">证明人</div>
+                        </td>
+                    </tr>
+
+                    <% if(data.workExprience) { %> 
+                        <% data.workExprience.forEach(function(element){ %>  
+                            <tr>
+                                <td >
+                                    <div class="form-group" style="text-align: center;">
+                                        <%= element.startTime %>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group" style="text-align: center;">
+                                        <%= element.endTime %>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group" style="text-align: center;">
+                                        <%= element.company %>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group" style="text-align: center;">
+                                        <%= element.post %>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group" style="text-align: center;">
+                                        <%= element.person %>
+                                    </div>
+                                </td>
+                            </tr>
+                         <% }) %>  
+                    <% } %>
+                </table>
+
+                <table class="table table-bordered">
+                    <tr>
+                        <td bgcolor="#EFEFEF" colspan="2">
+                            <strong>&nbsp;&nbsp;回避单位</strong>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><div style="text-align: center">单位名称</div></td>
+                        <td><div style="text-align: center">是否工作单位</div></td>
+                    </tr>
+
+                    <% if(data.avoidCompany.length) { %> 
+                        <% data.avoidCompany.forEach(function(element){ %>  
+                            <tr>
+                                <td >
+                                    <div class="form-group" style="text-align: center;">
+                                        <%= element.name %>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group" style="text-align: center;">
+                                        <%= element.is %>
+                                    </div>
+                                </td>
+                            </tr>
+                         <% }) %>
+                    <% } %>
+                </table>
+
+                <table class="table table-bordered">
+                    <tr>
+                        <td bgcolor="#EFEFEF">
+                            <strong>&nbsp;&nbsp;业务专长（不超过300字）</strong>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="form-group" style="width: 100%;">
+                                <%= data.speciality %>
+                            </div>
+                        </td>
+                    </tr> 
+
+
+                    <tr>
+                        <td bgcolor="#EFEFEF">
+                            <strong>&nbsp;&nbsp;工作业绩（不超过300字）</strong>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td >
+                            <div class="form-group" style="width: 100%;">
+                               <%= data.performance %>
+                            </div>
+                        </td>
+                    </tr> 
+
+                    <tr>
+                        <td bgcolor="#EFEFEF">
+                            <strong>&nbsp;&nbsp;其他说明（不超过300字）</strong>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#FFFFFF">
+                            <div class="form-group" style="width: 100%;">
+                                <%= data.others %>
+                            </div>
+                        </td>
+                    </tr> 
+
+
+                    <tr>
+                        <td height="50" colspan="4" align="center" bgcolor="#FFFFEC">
+                            <input class="hide" id="user_id" value=<%= data.user_id %> >
+                            <button type="button" id="pass" class="btn btn-primary" >同意申请</button>
+                            &nbsp;&nbsp;&nbsp;
+                            <button type="button" id="reject" class="btn btn-primary">驳回申请</button>
+                            &nbsp;&nbsp;&nbsp;
+                            <button type="button" id="stop" class="btn btn-primary">终止资格</button>
+                        </td>
+                    </tr>             
+                </table>
+
+                <form id="form1" name="form1" role="form" onsubmit="return false">
+                    <table id="table1" class="hide table table-bordered">
+                        <tr>
+                            <td colspan="2">
+                                <div class="form-group">
+                                    请填写相关信息
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    专家证书编号：
+                                    <input type="text" name="qual_id" id="qual_id" class="form-control" required />
+                                </div>
+                            </td>
+
+                            <td>
+                                <div class="form-group">
+                                    证书有效时间：
+                                    <input type="text" id="validTime" name="validTime" class="form-control" required />
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td rowspan="2" height="50" colspan="2" align="center" bgcolor="#FFFFEC">
+                                <button type="submit" id="submitBtn1" class="btn btn-primary">提 交</button>
+                                &nbsp;&nbsp;&nbsp;
+                                <button type="button" id="cancelBtn1" class="btn btn-primary">取 消</button>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+
+
+                <form id="form2" name="form2" role="form" onsubmit="return false">
+                    <table id="table2" class="hide table table-bordered">
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                请填写驳回申请理由：
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#FFFFFF">
+                            <div class="form-group" style="width: 100%;">
+                                <textarea class="form-control" rows="8" style="width: 100%;" id="rejectReason" name="rejectReason" required></textarea>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="50" colspan="4" align="center" bgcolor="#FFFFEC">
+                            <button type="submit" id="submitBtn2" class="btn btn-primary">提 交</button>
+                            &nbsp;&nbsp;&nbsp;
+                            <button type="button" id="cancelBtn2" class="btn btn-primary">取 消</button>
+                        </td>
+                    </tr>
+                    </table>
+                </form>
+
+                <form id="form3" name="form3" role="form" onsubmit="return false">
+                    <table id="table3" class="hide table table-bordered">
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                请填写终止资格理由：
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#FFFFFF">
+                            <div class="form-group" style="width: 100%;">
+                                <textarea class="form-control" rows="8" style="width: 100%;" id="stopReason" name="stopReason" required></textarea>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="50" colspan="4" align="center" bgcolor="#FFFFEC">
+                            <button type="submit" id="submitBtn3" class="btn btn-primary">提 交</button>
+                            &nbsp;&nbsp;&nbsp;
+                            <button type="button" id="cancelBtn3" class="btn btn-primary">取 消</button>
+                        </td>
+                    </tr>
+                    </table>
+                </form>
+                
+            </td>
+        </tr>
+    </table>
+</div>
+
+<!-- 日期选择器 -->
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.min.css" />
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker3.min.css" />
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.min.js"></script>
+
+<script type="text/javascript" src="js/review.js"></script>

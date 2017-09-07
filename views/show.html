@@ -1,0 +1,554 @@
+<% layout('layout.html') -%>
+
+<div style="width: 90%;margin:0px auto;">
+    <table class="table table-bordered table-condensed">
+        <tr>
+            <td>
+
+                <table class="table table-bordered">
+                    <tr>
+                        <td colspan="2" bgcolor="#EFEFEF"><strong>&nbsp;&nbsp;基本信息</strong></td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                专家证书编号：
+                                <%= data.qual_id %>
+                            </div>
+                        </td>
+
+                        <td>
+                            <div class="form-group">
+                                状 态：
+                                <%= data.status %>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                证书有效时间：
+                                <%= data.validTime %>
+                            </div>
+                        </td>
+
+                        <td rowspan="6" style="width: 450px;text-align: center;">
+                            <img src=<%= data.picture %> />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                姓 名：
+                                <%= data.uname %>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                性 别：
+                                <%= data.sexuality %>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                出生日期：
+                                <%= data.birthDay %>
+                            </div>
+                        </td>
+                    </tr>
+
+                  
+
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                手机号码：
+                                <%= data.phoneNumber %>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                E-mail：
+                                <%= data.email %>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                证件类型：
+                                <%= data.cardType %>
+                            </div>
+                        </td>
+
+                        <td>
+                            <div class="form-group">
+                                证件号码：
+                                <%= data.cardNumber %>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                颁发机构：
+                                <%= data.authority %>
+                            </div>
+                        </td>
+
+                        <td>
+                            <div class="form-group">
+                                政治面貌：
+                                <%= data.politicalStatus %>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                最高学历：
+                                <%= data.academicQual %>
+                            </div>
+                        </td>
+
+                        <td>
+                            <div class="form-group">
+                                最高学位：
+                                <%= data.academicDegree %>
+                            </div>
+                        </td>
+                    </tr> 
+
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                职 称：
+                                <%= data.title %>
+                            </div>
+                        </td>
+                        
+
+                        <td>
+                            <div class="form-group">
+                                证书编号：
+                                <%= data.titleID %>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                职 务：
+                                <%= data.post %>
+                            </div>
+                        </td>
+
+                        <td>
+                            <div class="form-group">
+                                从业时长：
+                                <%= data.workTime %>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                是否退休：
+                                <%= data.retire %>
+                            </div>
+                        </td>
+
+                        <td>
+                            <div class="form-group">
+                                是否兼职：
+                                <%= data.partTime %>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="2">
+                            <div class="form-group">
+                                工作单位：
+                                <%= data.company %>
+                            </div>
+                        </td>
+                    </tr>
+                  
+                    <tr>
+                        <td colspan="2">
+                            <div class="form-group">
+                                通讯地址：
+                                <%= data.address %>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                邮政编码：
+                                <%= data.postCode %>
+                            </div>
+                        </td>
+
+                        <td>
+                            <div class="form-group">
+                                家庭电话：
+                                <%= data.telPhoneNum %>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                毕业院校：
+                                <%= data.university %>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-group">
+                                专业：
+                                <%= data.major %>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="2">
+                            <div class="form-group">
+                                评审领域：
+                                <% if(data.reviewArea) {%>
+                                    <% if (data.reviewArea instanceof Array) { %>  
+                                        <% data.reviewArea.forEach(function(element){ %>  
+                                            <%= element %>&nbsp;&nbsp;
+                                        <% }) %>  
+                                    <% } else {%>
+                                        <%= data.reviewArea %>
+                                    <% } %>
+                                <% } %>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+
+                <table class="table table-bordered">
+                    <tr>
+                        <td bgcolor="#EFEFEF" colspan="2">
+                            <strong>&nbsp;&nbsp;资格证书</strong>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><div style="text-align: center">资格证书名</div></td>
+                        <td><div style="text-align: center">资格证书编号</div></td>
+                    </tr>
+                    <% if(data.qualification) { %>
+                        <% if (data.qualification instanceof Array) { %>  
+                            <% data.qualification.forEach(function(element){ %>  
+                                <tr>
+                                    <td>
+                                        <div class="form-group" style="text-align: center;">
+                                            <%= data[`qualification[${element}].name`] %>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-group" style="text-align: center;">
+                                            <%= data[`qualification[${element}].id`] %>
+                                        </div>
+                                    </td>
+                                </tr>
+                             <% }) %>  
+                        <% } else {%>
+                            <tr>
+                                <td>
+                                    <div style="text-align: center;">
+                                        <div class="form-group">
+                                            <%= data[`qualification[${data.qualification}].name`] %>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div style="text-align: center;">
+                                        <div class="form-group">
+                                            <%= data[`qualification[${data.qualification}].id`] %>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        <% } %>
+                    <% } %>
+                </table>
+
+                <table class="table table-bordered">
+                    <tr>
+                        <td bgcolor="#EFEFEF" colspan="4">
+                            <strong>&nbsp;&nbsp;评估/评审经历</strong>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><div style="text-align: center">时间</div></td>
+                        <td><div style="text-align: center">任务名称</div></td>
+                        <td><div style="text-align: center">任务描述</div></td>
+                        <td><div style="text-align: center">任务类型</div></td>
+                    </tr>
+                    <% if(data.reviewExprience) { %>
+                        <% if (data.reviewExprience instanceof Array) { %>  
+                            <% data.reviewExprience.forEach(function(element){ %>  
+                                <tr>
+                                    <td>
+                                        <div class="form-group" style="text-align: center;">
+                                            <%= data[`reviewExprience[${element}].time`] %>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-group" style="text-align: center;">
+                                            <%= data[`reviewExprience[${element}].name`] %>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-group" style="text-align: center;">
+                                            <%= data[`reviewExprience[${element}].desc`] %>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-group" style="text-align: center;">
+                                            <%= data[`reviewExprience[${element}].type`] %>
+                                        </div>
+                                    </td>
+                                </tr>
+                             <% }) %>  
+                        <% } else { %>
+                            <tr>
+                                <td>
+                                    <div class="form-group" style="text-align: center;">
+                                        <%= data[`reviewExprience[${data.reviewExprience}].time`] %>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group" style="text-align: center;">
+                                        <%= data[`reviewExprience[${data.reviewExprience}].name`] %>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group" style="text-align: center;">
+                                        <%= data[`reviewExprience[${data.reviewExprience}].desc`] %>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group" style="text-align: center;">
+                                        <%= data[`reviewExprience[${data.reviewExprience}].type`] %>
+                                    </div>
+                                </td>
+                            </tr>
+                        <% } %>
+                    <% } %>
+                </table>
+
+                <table class="table table-bordered">
+                    <tr>
+                        <td bgcolor="#EFEFEF" colspan="5">
+                            <strong>&nbsp;&nbsp;工作经历</strong>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div style="text-align: center">起始时间</div>
+                        </td>
+                        <td>
+                            <div style="text-align: center">终止时间</div>
+                        </td>
+                        <td>
+                            <div style="text-align: center">工作单位</div>
+                        </td>
+                        <td>
+                            <div style="text-align: center">职务</div>
+                        </td>
+                        <td>
+                            <div style="text-align: center">证明人</div>
+                        </td>
+                    </tr>
+
+                    <% if(data.workExprience) { %>
+                        <% if (data.workExprience instanceof Array) { %>  
+                            <% data.workExprience.forEach(function(element){ %>  
+                                <tr>
+                                    <td >
+                                        <div class="form-group" style="text-align: center;">
+                                            <%= data[`workExprience[${element}].startTime`] %>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-group" style="text-align: center;">
+                                            <%= data[`workExprience[${element}].endTime`] %>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-group" style="text-align: center;">
+                                            <%= data[`workExprience[${element}].company`] %>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-group" style="text-align: center;">
+                                            <%= data[`workExprience[${element}].post`] %>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-group" style="text-align: center;">
+                                            <%= data[`workExprience[${element}].person`] %>
+                                        </div>
+                                    </td>
+                                </tr>
+                             <% }) %>  
+                        <% } else { %>
+                            <tr>
+                                <td>
+                                    <div class="form-group" style="text-align: center;">
+                                        <%= data[`workExprience[${data.workExprience}].startTime`] %>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group" style="text-align: center;">
+                                        <%= data[`workExprience[${data.workExprience}].endTime`] %>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group" style="text-align: center;">
+                                        <%= data[`workExprience[${data.workExprience}].company`] %>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group" style="text-align: center;">
+                                        <%= data[`workExprience[${data.workExprience}].post`] %>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group" style="text-align: center;">
+                                        <%= data[`workExprience[${data.workExprience}].person`] %>
+                                    </div>
+                                </td>
+                            </tr>
+                        <% } %>
+                    <% } %>
+                </table>
+
+                <table class="table table-bordered">
+                    <tr>
+                        <td bgcolor="#EFEFEF" colspan="2">
+                            <strong>&nbsp;&nbsp;回避单位</strong>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><div style="text-align: center">单位名称</div></td>
+                        <td><div style="text-align: center">是否工作单位</div></td>
+                    </tr>
+
+                    <% if(data.avoidCompany) { %>
+                        <% if (data.avoidCompany instanceof Array) { %>  
+                            <% data.avoidCompany.forEach(function(element){ %>  
+                                <tr>
+                                    <td >
+                                        <div class="form-group" style="text-align: center;">
+                                            <%= data[`avoidCompany[${element}].name`] %>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-group" style="text-align: center;">
+                                            <%= data[`avoidCompany[${element}].is`] %>
+                                        </div>
+                                    </td>
+                                </tr>
+                             <% }) %>  
+                        <% } else{ %>
+                            <tr>
+                                <td >
+                                    <div class="form-group" style="text-align: center;">
+                                        <%= data[`avoidCompany[${data.avoidCompany}].name`] %>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group" style="text-align: center;">
+                                        <%= data[`avoidCompany[${data.avoidCompany}].is`] %>
+                                    </div>
+                                </td>
+                            </tr>
+                        <% } %>
+                    <% } %>
+                </table>
+
+                <table class="table table-bordered">
+                    <tr>
+                        <td bgcolor="#EFEFEF">
+                            <strong>&nbsp;&nbsp;业务专长（不超过300字）</strong>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="form-group" style="width: 100%;">
+                                <%= data.speciality %>
+                            </div>
+                        </td>
+                    </tr> 
+
+
+                    <tr>
+                        <td bgcolor="#EFEFEF">
+                            <strong>&nbsp;&nbsp;工作业绩（不超过300字）</strong>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td >
+                            <div class="form-group" style="width: 100%;">
+                               <%= data.performance %>
+                            </div>
+                        </td>
+                    </tr> 
+
+                    <tr>
+                        <td bgcolor="#EFEFEF">
+                            <strong>&nbsp;&nbsp;其他说明（不超过300字）</strong>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#FFFFFF">
+                            <div class="form-group" style="width: 100%;">
+                                <%= data.others %>
+                            </div>
+                        </td>
+                    </tr> 
+
+                    <% if(data.status == '审核中') { %>
+                    <tr class="hide">
+                    <% } else { %>
+                    <tr>
+                    <% } %>
+                        <td height="50" colspan="4" align="center" bgcolor="#FFFFEC">
+                            <!-- <button type="button" id="submitBtn" name="submitBtn" class="btn btn-primary" onclick="location.href = '/edit?submit=true';">提 交</button>
+                            &nbsp;&nbsp;&nbsp; -->
+                            <button type="button" id="editBtn" class="btn btn-primary" onclick="location.href = '/edit?edit=true';">编 辑</button>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</div>
