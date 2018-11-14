@@ -3,7 +3,7 @@
 ## 1、本项目是一个Express项目，用了bootstrap框架以及参考了许多优秀的bootstrap组件
 ## 2、项目截图
 ### (1)注册页面，有输入检测功能，并且用户输入用户名过程中能验证用户名是否已经存在
-![](https://github.com/AsanCai/Database_Homework/raw/master/showImage/1.png)
+<div align=center><img width="150" height="150" src="https://github.com/AsanCai/Database_Homework/raw/master/showImage/1.png"/></div>
 ![](https://github.com/AsanCai/Database_Homework/raw/master/showImage/2.png)
 ![](https://github.com/AsanCai/Database_Homework/raw/master/showImage/3.png)
 ![](https://github.com/AsanCai/Database_Homework/raw/master/showImage/4.png)
